@@ -1,19 +1,19 @@
-export HOME=/workspace/sw/chzhou
+export workspace=/workspace/sw/chzhou
 
 OS=`uname -a`
 
 if [[ $OS = *"Linux txa"* ]]; then
     echo "source server env setup"
-	source $HOME/.env/.server
+	source $workspace/configs/.env/.server
 elif [[ $OS = *"Linux axx-v"* ]]; then
     echo "source 56xx hardware env setup" 
     :
 elif [[ $OS = *"Linux qemux86"* ]]; then
     echo "source qemu env setup" 
-    source $HOME/workspace/script/snr/init_hugepages.sh
+    source $workspace/workspace/script/snr/init_hugepages.sh
 else
     :
 fi 
 
 # Source common env
-source $HOME/.env/.common
+source $workspace/configs/.env/.common
