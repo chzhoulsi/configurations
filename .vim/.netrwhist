@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/workspace/sw/chzhou/build/shim-library/iwa-rte-shim-library/bridge_eth_lib/app'
+let g:netrw_dirhist_2='/workspace/sw/chzhou/build/shim-library/iwa-rte-shim-library/bridge_eth_lib'
+let g:netrw_dirhist_3='/workspace/sw/chzhou/svn/src/trunk/sde/samples/AXC6732/DspLoadBalance/cpu'
+let g:netrw_dirhist_4='/workspace/sw/chzhou/svn/src/trunk/sde/samples/AXC6732/DspLoadBalance/cpu/.svn'
+let g:netrw_dirhist_5='/workspace/sw/chzhou/svn/src/trunk/sde/samples/AXC6732/DspLoadBalance/cpu'
+let g:netrw_dirhist_6='/workspace/sw/chzhou/svn/src/trunk/sde/samples/AXC6732/DspLoadBalance'
+let g:netrw_dirhist_7='/workspace/sw/chzhou/svn/src/trunk/sde/samples/AXC6732/DspLoadBalance/dsp'
+let g:netrw_dirhist_8='/workspace/sw/chzhou/svn/src/trunk/sde/samples/AXC6732/DspLoadBalance'

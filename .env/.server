@@ -1,0 +1,92 @@
+#!/bash/bin
+
+set -o vi
+
+#Git
+export GIT_SSL_NO_VERIFY=true
+export PATH=$PATH:/tools/AGRtools/git-1.9.5/bin
+
+#Tools
+export SVN_EDITOR=vi
+export VIMRUNTIME=/usr/share/vim/vim72
+#export VIMRUNTIME=/home/chzhou/local/programs/vim/runtime
+export LSF_ENVDIR=/tools/lsfadm/conf
+
+#Set Environment Variables for 64bit ASE
+export JAVA_HOME=/home/swbuilds/linux64/jdk_17u2
+export PATH=/home/swbuilds/linux64/jdk_17u2/bin:$PATH
+export ECLIPSE_HOME=/tools/AGRreleases/eclipse/4.3.0/ase-sdk-4.3.0-ds-5.18-x86_64
+export LD_LIBRARY_PATH=/home/swbuilds/linux64/jdk_17u2/lib:/tools/AGRtools/gnutools/gcc-4.8.2/lib64:/tools/AGRtools/gnutools/gcc-4.8.2/lib:/tools/AGRtools/x86_64/lib64:/tools/AGRtools/x86_64/lib:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=/tools/AGRtools/x86_64/lib64:/tools/AGRtools/x64/lib64:/tools/AGRtools/x86_64/lib
+
+
+#PATH for Others
+export PATH=$PATH:/tools/lsf7.0/bin:/workspace/sw/chzhou/test/trunk/tools/AcpTestTool
+export PATH=$PATH:/tools/lsf7.0/bin/bsub
+export PATH=$PATH:/home/validation/ACP2500/hw/util/
+export PATH=$PATH:~/local/bin
+export PATH=$PATH:/home/validation/al_common/util
+
+#PATH for Scripts
+export PATH=$PATH:/workspace/sw/chzhou/workspace/script/
+export PATH=$PATH:/$WS/svn/test/trunk/tools/acpBoardScripts/
+export PATH=$PATH:/$WS/workspace/script
+
+# for new GDB
+export PATH=/tools/AGRtools/gnutools/gdb-7.6.2/bin:$PATH
+
+####################
+# IXIA Env Vars
+export IXIA_LOGS_DIR=/tmp/Ixia/Logs
+export IXIA_HOME=/tools/AGRtools/ixia
+export IXIA_RESULTS_DIR=/tmp/Ixia/Results
+export PATH=$PATH:/tools/AGRtools/bin:/tools/AGRtools/ixia/bin:/tools/AGRtools/smartlib/bin
+export TCLLIBPATH=/tools/AGRtools/ixia/lib
+#export IXIA_VERSION=5.50.500.24
+#export IXIA_VERSION=6.00.700.3
+#export IXIA_VERSION=6.10.750.16
+export IXIA_VERSION=6.30.850.23
+export IXIA_TCL_DIR=/tools/AGRtools/ixia/lib
+export IXIA_SAMPLES=/tools/AGRtools/ixia/lib/ixTcl1.0
+# End IXIA Env Vars
+####################
+
+#Ixia Environment
+IXIA_HOME=/tools/AGRtools/ixia
+TCL_HOME=/tools/AGRtools/ixia
+TCLver=8.4
+IxiaLibPath=$IXIA_HOME/lib
+IxiaBinPath=$IXIA_HOME/bin
+TCLLibPath=$TCL_HOME/lib
+TCLBinPath=$TCL_HOME/bin
+TCL_LIBRARY=$TCLLibPath/tcl$TCLver
+TK_LIBRARY=$TCLLibPath/tk$TCLver
+
+PATH=$IxiaBinPath:$PATH
+PATH=$TCLBinPath:$PATH
+
+#TCLLIBPATH=$IxiaLibPath:$TCLLIBPath; # does not work, not a set of paths, must point to Ixia only
+TCLLIBPATH=$IxiaLibPath
+
+IXIA_RESULTS_DIR=/tmp/Ixia/Results
+IXIA_LOGS_DIR=/tmp/Ixia/Logs
+IXIA_TCL_DIR=$IxiaLibPath
+IXIA_SAMPLES=$IxiaLibPath/ixTcl1.0
+IXIA_VERSION=6.00.700.3
+
+#Export the Ixia env variables.
+export IXIA_HOME TCL_LIBRARY TK_LIBRARY TCLLIBPATH
+export LD_LIBRARY_PATH IXIA_RESULTS_DIR
+export IXIA_LOGS_DIR IXIA_TCL_DIR IXIA_SAMPLES
+export IXIA_TCL_DIR IXIA_VERSION
+
+#Export Path for GCC
+my_gcc=/tools/AGRtools/x64/bin
+PATH=$my_gcc:$PATH
+
+#Shard Libary
+LD_LIBRARY_PATH=$IxiaLibPath:$TCLLibPath:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/home/swbuilds/linux64/jdk_17u2/lib:/tools/AGRtools/gnutools/gcc-4.8.2/lib64:/tools/AGRtools/gnutools/gcc-4.8.2/lib:/tools/AGRtools/x86_64/lib64:/tools/AGRtools/x86_64/lib:~/local/lib/:$LD_LIBRARY_PATH
+
+# SNR Workflow
+export PATH=/v/share/conda/envs/dev/bin/:$PATH
