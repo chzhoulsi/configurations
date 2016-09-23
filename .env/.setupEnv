@@ -2,14 +2,23 @@ export workspace=/workspace/sw/chzhou
 
 OS=`uname -a`
 
-if [[ $OS = *"Linux txa"* ]]; then
+if [[ $OS = *"Linux txasoft1"* ]]; then
     echo "source server env setup"
 	source $workspace/configs/.env/.server
 elif [[ $OS = *"Linux axx-v"* ]]; then
     echo "source 56xx hardware env setup" 
+    #setup mode character, can't figure it out right now
     :
 elif [[ $OS = *"Linux qemux86"* ]]; then
     echo "source qemu env setup" 
+    source $workspace/workspace/script/snr/init_hugepages.sh
+elif [[ $OS = *"Linux ampelion"* ]]; then
+    echo "source ampelion env setup" 
+    #sudo bash -c "source $workspace/workspace/script/snr/init_hugepages.sh"
+    #export LD_LIBRARY_PATH=/workspace/sw/chzhou/build/shim-library/iwa-rte-shim-library/bridge_eth_lib/lib/:/workspace/sw/chzhou/build/shim-library/iwa-rte-shim-library/bridge_driver/lib/:$LD_LIBRARY_PATH
+elif [[ $OS = *"Linux txasoft-yocto"* ]]; then
+    echo "source txasoft-yocto env setup" 
+    export VIMRUNTIME=/usr/share/vim/vim74/ 
     source $workspace/workspace/script/snr/init_hugepages.sh
 else
     :

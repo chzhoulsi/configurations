@@ -1,3 +1,4 @@
+#!/bin/bash
 # File System
 export ase_install_path=/workspace/sw/chzhou/build/ase
 export workspace=/workspace/sw/chzhou
@@ -19,14 +20,24 @@ export cmd=/workspace/sw/chzhou/commands
 export garbage=/workspace/sw/chzhou/garbage
 export env=/workspace/sw/chzhou/.env/
 export tmp=/workspace/sw/chzhou/temp
+export configs=/workspace/sw/chzhou/configs
 
 #set console
-stty columns 100 rows 10
-shopt -s checkwinsize
+#stty columns 100 rows 10
+#shopt -s checkwinsize
 export PS1="\[\033[01;94m\][\W@\h]\[\033[0m\]"
 
 export TERM=xterm-256color
 export LS_COLORS='di=4:fi=0:ln=33'
+
+
+#set proxy
+export http_proxy=http://proxy-jf.intel.com:911
+export https_proxy=https://proxy-jf.intel.com:911
+export ftp_proxy=ftp://proxy-jf.intel.com:911
+export socks_proxy=http://proxy-jf.intel.com:1080
+export no_proxy=intel.com,.intel.com,10.0.0.0/8,192.168.0.0/16,localhost,127.0.0.0/8,134.134.0.0/16
+
 
 #alias
 alias ls='ls --color -c'
