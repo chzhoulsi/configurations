@@ -3,24 +3,43 @@
 export ase_install_path=/workspace/sw/chzhou/build/ase
 export workspace=/workspace/sw/chzhou
 export build=/workspace/sw/chzhou/build
-export linux_install=/workspace/sw/chzhou/build/linux
-export uboot_install=/workspace/sw/chzhou/build/uboot
+export linux_install=/workspace/sw/chzhou/build/linux/axxia_yocto_linux_4.1_private
+export uboot_install=/workspace/sw/chzhou/build/uboot/lsi_axxia_uboot
+export atf_install=/workspace/sw/chzhou/build/axxia_atf_private
 export rte_install=/workspace/sw/chzhou/build/rte
 export dpdk_install=/workspace/sw/chzhou/build/iwa-rte-dpdk
-export qemu_install=/workspace/sw/chzhou/build/qemu/checkout
+export dpdk_test_install=/workspace/sw/chzhou/build/iwa_qa-snr_rte_qa
+export rdk_install=/workspace/sw/chzhou/build/rdk_install/checkout
 export shim_lib_install=/workspace/sw/chzhou/build/shim-library/iwa-rte-shim-library
 export local=/workspace/sw/chzhou/local
+export release_check=/workspace/sw/chzhou/release
+export scripts=/workspace/sw/chzhou/scripts
+export common=/workspace/sw/chzhou/configs/.env/.common
+export fun=/workspace/sw/chzhou/fun
 
 export dsploadbalance_trunk=/workspace/sw/chzhou/svn/src/trunk/sde/samples/AXC6732/DspLoadBalance
 export axm56xx_peripheral_testing=/workspace/sw/chzhou/svn/test/trunk/sde/peripherals/AXM56xx_Peripheral_Testing
-export script=/workspace/sw/chzhou/workspace/script
 export svn=/workspace/sw/chzhou/svn
-export debug=/workspace/sw/chzhou/workspace/debugging
+export debug=/workspace/sw/chzhou/debugging
 export cmd=/workspace/sw/chzhou/commands
 export garbage=/workspace/sw/chzhou/garbage
 export env=/workspace/sw/chzhou/.env/
 export tmp=/workspace/sw/chzhou/temp
 export configs=/workspace/sw/chzhou/configs
+export image=/workspace/sw/chzhou/svn/test/trunk/tools/bsp_scripts/image/
+
+export bd_test=/workspace/sw/chzhou/build/iwa_qa-snr_rte_qa/bridge_driver_tests
+export demo=/workspace/sw/chzhou/debugging/non-BZs/snr/demo/
+export automation=/workspace/sw/chzhou/debugging/non-BZs/snr/automation
+
+#my own stuff
+export PATH=$PATH:/workspace/sw/chzhou/local/bin
+export PATH=$PATH:/workspace/sw/chzhou/script
+export PATH=$PATH:./
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/workspace/sw/chzhou/local/lib
+
+#utilites in validation team  
+export PATH=$PATH:/home/validation/al_common/util
 
 #set console
 #stty columns 100 rows 10
@@ -30,7 +49,6 @@ export PS1="\[\033[01;94m\][\W@\h]\[\033[0m\]"
 export TERM=xterm-256color
 export LS_COLORS='di=4:fi=0:ln=33'
 
-
 #set proxy
 export http_proxy=http://proxy-jf.intel.com:911
 export https_proxy=https://proxy-jf.intel.com:911
@@ -38,34 +56,71 @@ export ftp_proxy=ftp://proxy-jf.intel.com:911
 export socks_proxy=http://proxy-jf.intel.com:1080
 export no_proxy=intel.com,.intel.com,10.0.0.0/8,192.168.0.0/16,localhost,127.0.0.0/8,134.134.0.0/16
 
+#VIM RUNTIME
+export VIMRUNTIME=/workspace/sw/chzhou/local/programs/vim/runtime/
+
+#Give /usr/bin higher priority over /usr/local/bin
+export PATH=/usr/bin:$PATH
+
+#For updated gcc
+export PATH=/tools/AGRtools/gnutools-snr/bin:$PATH
 
 #alias
-alias ls='ls --color -c'
+#alias ls='ls --color -c'
+alias ls='ls -tF'
+alias l='ls -tF'
 alias t='telnet'
 alias cp='cp -i'
 alias mv='mv -i'
 
-alias v='/usr/bin/vim'
-alias vi='/usr/bin/vim'
-alias vim='/usr//bin/vim'
-alias vimdiff='/usr/bin/vimdiff'
+
+alias v='$local/bin/vim'
+alias vi='$local/bin/vim'
+alias vim='/usr/bin/vim'
+alias vimdiff='$local/bin/vimdiff'
 
 alias lg='login.exp'
 
 alias mca='make clean all'
-alias sld='source ./ncp.env;ncpDriver ncp update'
 
-alias tenv='source /home/chzhou_ws/workspace/script/test.env'
+alias tenv='source $script/test.env'
 alias tmuxw='tmux a -t workspace' 
 alias ll='ls -l'
 alias lla='ls -la'
 alias llt='ls -lt'
 alias llat='ls -lat'
 
+alias ssh='/usr/bin/ssh -X -2'
+alias hs='history|less'
+
+alias wget='/usr/bin/wget'
+
+alias chX='xclip -verbose'
+#alias su='su --preserve-environment'
+
+alias git='/v/share/conda/envs/dev/bin/git'
+alias git-review='/v/share/conda/envs/dev/bin/git-review'
+
 #functions
 gp ()                                                
-{                                                    
-    grep "$1" "$2" "$3" "$4" -nRH --color --exclude="*\.svn*"
+{
+    grep "$1" "$2" "$3" "$4" -nRH -s --color --exclude="*\.svn*" 
+}                                                    
+
+gtags ()                                                
+{
+  pushd $1
+  cscope -R -b
+  ctags -R *  
+  popd
+}                                                    
+
+sld ()                                                
+{
+    pushd $1
+    source ./ncp.env
+    ncpDriver ncp update
+    popd 
 }                                                    
 
 # do ". acd_func.sh"

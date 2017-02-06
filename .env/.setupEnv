@@ -2,11 +2,38 @@ export workspace=/workspace/sw/chzhou
 
 OS=`uname -a`
 
+# Source common env
+source $workspace/configs/.env/.common
+
+# Become root
+beRoot()
+{
+    if [ $(whoami) != "root" ]; then
+        echo "becoming root"
+        su root --preserve-environment
+    fi
+}
+
+beRootUbuntu()
+{
+    if [ $(whoami) != "root" ]; then
+        echo "becoming root"
+        sudo su -p 
+    fi
+}
+
+
 if [[ $OS = *"Linux txasoft1"* ]]; then
-    echo "source server env setup"
-	source $workspace/configs/.env/.server
+    echo "source txasoft env setup"
+    set -o vi
 elif [[ $OS = *"Linux axx-v"* ]]; then
     echo "source 56xx hardware env setup" 
+    beRoot;
+    #setup mode character, can't figure it out right now
+    :
+elif [[ $OS = *"Linux axx-w"* ]]; then
+    echo "source xlf hardware env setup"
+    beRoot
     #setup mode character, can't figure it out right now
     :
 elif [[ $OS = *"Linux qemux86"* ]]; then
@@ -14,15 +41,16 @@ elif [[ $OS = *"Linux qemux86"* ]]; then
     source $workspace/workspace/script/snr/init_hugepages.sh
 elif [[ $OS = *"Linux ampelion"* ]]; then
     echo "source ampelion env setup" 
-    #sudo bash -c "source $workspace/workspace/script/snr/init_hugepages.sh"
-    #export LD_LIBRARY_PATH=/workspace/sw/chzhou/build/shim-library/iwa-rte-shim-library/bridge_eth_lib/lib/:/workspace/sw/chzhou/build/shim-library/iwa-rte-shim-library/bridge_driver/lib/:$LD_LIBRARY_PATH
+    set -o vi
 elif [[ $OS = *"Linux txasoft-yocto"* ]]; then
     echo "source txasoft-yocto env setup" 
-    export VIMRUNTIME=/usr/share/vim/vim74/ 
-    source $workspace/workspace/script/snr/init_hugepages.sh
+    set -o vi
+elif [[ $OS = *"WCPQA"* ]] || [[ $OS = *"wcpqa"* ]]; then
+    echo "source wild cat env setup" 
+    #beRootUbuntu
+    set -o vi
 else
     :
 fi 
 
-# Source common env
-source $workspace/configs/.env/.common
+
